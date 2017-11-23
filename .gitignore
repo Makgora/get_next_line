@@ -1,0 +1,26 @@
+#Object files
+*.o
+
+#Precompiled headers
+*.gch
+
+#Libraries
+*.a
+
+#Pdf files
+#*.pdf
+
+#Scripts
+#*.sh
+
+#Compiled files
+*.out
+
+#Vim temp files
+*.swp
+
+#Text files
+*.txt
+
+#Other files
+main.c
