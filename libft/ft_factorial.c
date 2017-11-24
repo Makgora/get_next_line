@@ -1,36 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_iterative_factorial.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tparand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/24 12:37:31 by tparand           #+#    #+#             */
-/*   Updated: 2017/11/24 12:47:09 by tparand          ###   ########.fr       */
+/*   Created: 2017/11/09 17:56:47 by tparand           #+#    #+#             */
+/*   Updated: 2017/11/10 17:31:18 by tparand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
-#include <fcntl.h>
-
-int		main(int argc, char **argv)
+int		ft_factorial(int nb)
 {
-	int	fd;
-	char	*line;
+	int	sum;
 
-	if (argc == 1)
-		fd = 0;
-	else if (argc == 2)
-		fd = open(argv[1], O_RDONLY);
+	if (nb < 0 || nb > 12)
+		return (0);
+	else if (nb == 0)
+		return (1);
 	else
-		return (2);
-	while (get_next_line(fd, &line) == 1)
 	{
-		printf("line : %s\n", line);
-		ft_putendl(line);
-		free(line);
+		sum = 1;
+		while (nb > 1)
+		{
+			sum *= nb;
+			nb--;
+		}
 	}
-	if (argc == 2)
-		close(fd);
-	return (0);
+	return (sum);
 }

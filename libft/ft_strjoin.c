@@ -1,36 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tparand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/24 12:37:31 by tparand           #+#    #+#             */
-/*   Updated: 2017/11/24 12:47:09 by tparand          ###   ########.fr       */
+/*   Created: 2017/11/10 16:45:18 by tparand           #+#    #+#             */
+/*   Updated: 2017/11/23 20:41:32 by tparand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
-#include <fcntl.h>
+#include "libft.h"
 
-int		main(int argc, char **argv)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	int	fd;
-	char	*line;
+	char	*new;
+	size_t	s1_len;
+	size_t	s2_len;
 
-	if (argc == 1)
-		fd = 0;
-	else if (argc == 2)
-		fd = open(argv[1], O_RDONLY);
+	if (!s1)
+		s1_len = 0;
 	else
-		return (2);
-	while (get_next_line(fd, &line) == 1)
-	{
-		printf("line : %s\n", line);
-		ft_putendl(line);
-		free(line);
-	}
-	if (argc == 2)
-		close(fd);
-	return (0);
+		s1_len = ft_strlen(s1);
+	if (!s2)
+		s2_len = 0;
+	else
+		s2_len = ft_strlen(s2);
+	new = ft_strnew(s1_len + s2_len);
+	if (!new)
+		return (NULL);
+	if (s1 != NULL)
+		ft_strcpy(new, s1);
+	if (s2 != NULL)
+		ft_strcat(new, s2);
+	return (new);
 }

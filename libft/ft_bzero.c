@@ -1,36 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tparand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/24 12:37:31 by tparand           #+#    #+#             */
-/*   Updated: 2017/11/24 12:47:09 by tparand          ###   ########.fr       */
+/*   Created: 2017/11/10 16:41:09 by tparand           #+#    #+#             */
+/*   Updated: 2017/11/10 16:47:48 by tparand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
-#include <fcntl.h>
+#include "libft.h"
 
-int		main(int argc, char **argv)
+void	*ft_bzero(void *s, size_t n)
 {
-	int	fd;
-	char	*line;
+	char	*p_s;
 
-	if (argc == 1)
-		fd = 0;
-	else if (argc == 2)
-		fd = open(argv[1], O_RDONLY);
-	else
-		return (2);
-	while (get_next_line(fd, &line) == 1)
+	p_s = (char *)s;
+	while (n-- > 0)
 	{
-		printf("line : %s\n", line);
-		ft_putendl(line);
-		free(line);
+		*p_s = '\0';
+		p_s++;
 	}
-	if (argc == 2)
-		close(fd);
-	return (0);
+	return (s);
 }

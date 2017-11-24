@@ -1,36 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tparand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/24 12:37:31 by tparand           #+#    #+#             */
-/*   Updated: 2017/11/24 12:47:09 by tparand          ###   ########.fr       */
+/*   Created: 2017/11/10 16:42:04 by tparand           #+#    #+#             */
+/*   Updated: 2017/11/10 16:49:03 by tparand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
-#include <fcntl.h>
+#include "libft.h"
 
-int		main(int argc, char **argv)
+void	ft_lstdelone(t_list **alst, void (*del)(void *, size_t))
 {
-	int	fd;
-	char	*line;
-
-	if (argc == 1)
-		fd = 0;
-	else if (argc == 2)
-		fd = open(argv[1], O_RDONLY);
-	else
-		return (2);
-	while (get_next_line(fd, &line) == 1)
+	if (*alst != NULL && alst != NULL && del != NULL)
 	{
-		printf("line : %s\n", line);
-		ft_putendl(line);
-		free(line);
+		del((*alst)->content, (*alst)->content_size);
+		ft_memdel((void **)alst);
 	}
-	if (argc == 2)
-		close(fd);
-	return (0);
 }

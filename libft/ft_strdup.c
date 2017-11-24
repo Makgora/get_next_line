@@ -1,36 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tparand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/24 12:37:31 by tparand           #+#    #+#             */
-/*   Updated: 2017/11/24 12:47:09 by tparand          ###   ########.fr       */
+/*   Created: 2017/11/10 16:45:07 by tparand           #+#    #+#             */
+/*   Updated: 2017/11/11 18:08:04 by tparand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
-#include <fcntl.h>
+#include "libft.h"
 
-int		main(int argc, char **argv)
+char	*ft_strdup(const char *s)
 {
-	int	fd;
-	char	*line;
+	size_t	s_len;
+	char	*new_s;
 
-	if (argc == 1)
-		fd = 0;
-	else if (argc == 2)
-		fd = open(argv[1], O_RDONLY);
-	else
-		return (2);
-	while (get_next_line(fd, &line) == 1)
-	{
-		printf("line : %s\n", line);
-		ft_putendl(line);
-		free(line);
-	}
-	if (argc == 2)
-		close(fd);
-	return (0);
+	s_len = ft_strlen(s);
+	new_s = ft_strnew(s_len);
+	if (!new_s)
+		return (NULL);
+	return (ft_memcpy(new_s, s, s_len));
 }

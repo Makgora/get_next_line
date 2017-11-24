@@ -10,20 +10,29 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "get_next_line.h"
+
+char		*ft_realloc(char *str, size_t str_len, size_t len)
+{
+	char	*new_str;
+	
+	if (!str)
+		return (NULL);
+	new_str = ft_strnew(str_len + len);
+	if (!new_str)
+		return (NULL);
+	ft_strcpy(new_str, str);
+	return (new_str);
+}
+
 int		get_next_line(const int fd, char **line)
 {
 	char	buffer[BUFF_SIZE];
-	int		bytes_readed;
+	int	n_pos;
 
-	bytes_readed = read(fd, buffer, BUFF_SIZE);
-	while ()
-	{
-		
-	}
+	read(fd, buffer, BUFF_SIZE);
+	n_pos = ft_strclen(buffer, '\n');
+	ft_realloc(*line, ft_strlen(*line), n_pos);
+	ft_strncat(*line, buffer, n_pos);
+	return (1);
 }
-
-//Je read mon buffer;
-//Strclen pour savoir si il y a un \n
-//Je realloc avec strclen
-//Je concatene line avc buffer;
-

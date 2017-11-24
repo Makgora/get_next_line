@@ -1,36 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tparand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/24 12:37:31 by tparand           #+#    #+#             */
-/*   Updated: 2017/11/24 12:47:09 by tparand          ###   ########.fr       */
+/*   Created: 2017/11/10 16:43:06 by tparand           #+#    #+#             */
+/*   Updated: 2017/11/21 13:45:02 by tparand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
-#include <fcntl.h>
+#include "libft.h"
 
-int		main(int argc, char **argv)
+static void	putnbr_aux(long int n)
 {
-	int	fd;
-	char	*line;
-
-	if (argc == 1)
-		fd = 0;
-	else if (argc == 2)
-		fd = open(argv[1], O_RDONLY);
-	else
-		return (2);
-	while (get_next_line(fd, &line) == 1)
+	if (n < 0)
 	{
-		printf("line : %s\n", line);
-		ft_putendl(line);
-		free(line);
+		ft_putchar('-');
+		putnbr_aux(n * -1);
 	}
-	if (argc == 2)
-		close(fd);
-	return (0);
+	else if (n > 0)
+	{
+		putnbr_aux(n / 10);
+		ft_putchar(n % 10 + '0');
+	}
+}
+
+void		ft_putnbr(int n)
+{
+	if (n == 0)
+		ft_putchar('0');
+	else
+		putnbr_aux((long int)n);
 }

@@ -1,36 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tparand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/24 12:37:31 by tparand           #+#    #+#             */
-/*   Updated: 2017/11/24 12:47:09 by tparand          ###   ########.fr       */
+/*   Created: 2017/11/10 16:41:07 by tparand           #+#    #+#             */
+/*   Updated: 2017/11/10 16:54:05 by tparand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
-#include <fcntl.h>
+#include "libft.h"
 
-int		main(int argc, char **argv)
+int		ft_atoi(const char *nptr)
 {
-	int	fd;
-	char	*line;
+	unsigned int	n;
+	int				sign;
 
-	if (argc == 1)
-		fd = 0;
-	else if (argc == 2)
-		fd = open(argv[1], O_RDONLY);
-	else
-		return (2);
-	while (get_next_line(fd, &line) == 1)
+	sign = 1;
+	n = 0;
+	while (*nptr == ' ' || *nptr == '\t'
+			|| *nptr == '\n' || *nptr == '\r'
+			|| *nptr == '\v' || *nptr == '\f')
+		nptr++;
+	if (*nptr == '-' || *nptr == '+')
 	{
-		printf("line : %s\n", line);
-		ft_putendl(line);
-		free(line);
+		if (*nptr == '-')
+			sign = -1;
+		nptr++;
 	}
-	if (argc == 2)
-		close(fd);
-	return (0);
+	while (ft_isdigit((int)*nptr) == 1)
+	{
+		n = 10 * n + (*nptr - '0');
+		nptr++;
+	}
+	return (n * sign);
 }

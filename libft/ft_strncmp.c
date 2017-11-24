@@ -1,36 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tparand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/24 12:37:31 by tparand           #+#    #+#             */
-/*   Updated: 2017/11/24 12:47:09 by tparand          ###   ########.fr       */
+/*   Created: 2017/11/10 16:46:12 by tparand           #+#    #+#             */
+/*   Updated: 2017/11/21 18:06:54 by tparand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
-#include <fcntl.h>
+#include "libft.h"
 
-int		main(int argc, char **argv)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	int	fd;
-	char	*line;
+	unsigned const char *p_s1;
+	unsigned const char *p_s2;
 
-	if (argc == 1)
-		fd = 0;
-	else if (argc == 2)
-		fd = open(argv[1], O_RDONLY);
-	else
-		return (2);
-	while (get_next_line(fd, &line) == 1)
+	p_s1 = (unsigned const char *)s1;
+	p_s2 = (unsigned const char *)s2;
+	if (n == 0)
+		return (0);
+	while (n > 1 && *p_s1 == *p_s2 && *p_s1 != '\0')
 	{
-		printf("line : %s\n", line);
-		ft_putendl(line);
-		free(line);
+		p_s1++;
+		p_s2++;
+		n--;
 	}
-	if (argc == 2)
-		close(fd);
-	return (0);
+	return (*p_s1 - *p_s2);
 }
