@@ -19,9 +19,9 @@ int	ft_strclen(const char *s, char c)
 	s_len = 0;
 	while (*s != '\0')
 	{
+		s_len++;
 		if (*s == c)
 			return (s_len);
-		s_len++;
 		s++;
 	}
 	return (s_len);

@@ -6,7 +6,7 @@
 /*   By: tparand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/10 16:43:12 by tparand           #+#    #+#             */
-/*   Updated: 2017/11/10 16:49:48 by tparand          ###   ########.fr       */
+/*   Updated: 2017/11/24 12:21:52 by tparand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,12 @@
 
 void	ft_putstr(char const *s)
 {
-	while (*s != '\0')
+	if (s != NULL)
 	{
-		ft_putchar(*s);
-		s++;
+		while (*s != '\0')
+		{
+			ft_putchar(*s);
+			s++;
+		}
 	}
 }

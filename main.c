@@ -18,18 +18,21 @@ int		main(int argc, char **argv)
 	int	fd;
 	char	*line;
 
+	line = ft_memalloc(0);
 	if (argc == 1)
 		fd = 0;
 	else if (argc == 2)
 		fd = open(argv[1], O_RDONLY);
 	else
 		return (2);
-	while (get_next_line(fd, &line) == 1)
+	get_next_line(fd, &line);
+	ft_putendl(line);
+	free(line);
+	/*while (get_next_line(fd, &line) == 1)
 	{
-		printf("line : %s\n", line);
 		ft_putendl(line);
 		free(line);
-	}
+	}*/
 	if (argc == 2)
 		close(fd);
 	return (0);

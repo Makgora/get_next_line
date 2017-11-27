@@ -6,7 +6,7 @@
 /*   By: tparand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/10 16:43:00 by tparand           #+#    #+#             */
-/*   Updated: 2017/11/10 16:49:38 by tparand          ###   ########.fr       */
+/*   Updated: 2017/11/24 11:51:29 by tparand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 
 void	ft_putendl(char const *s)
 {
-	ft_putstr(s);
-	ft_putchar('\n');
+	if (s != NULL)
+	{
+		ft_putstr(s);
+		ft_putchar('\n');
+	}
 }

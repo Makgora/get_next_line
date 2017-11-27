@@ -18,7 +18,7 @@ char		*ft_realloc(char *str, size_t str_len, size_t len)
 	
 	if (!str)
 		return (NULL);
-	new_str = ft_strnew(str_len + len);
+	new_str = ft_memalloc(str_len + len);
 	if (!new_str)
 		return (NULL);
 	ft_strcpy(new_str, str);
@@ -31,8 +31,10 @@ int		get_next_line(const int fd, char **line)
 	int	n_pos;
 
 	read(fd, buffer, BUFF_SIZE);
-	n_pos = ft_strclen(buffer, '\n');
-	ft_realloc(*line, ft_strlen(*line), n_pos);
+	n_pos = ft_strclen(buffer, 'l');
+	printf("n_pos: %d\n", n_pos);
+	*line = ft_realloc(*line, ft_strlen(*line), n_pos);
+	//printf("1n_pos: %d, line_len: %zu\n", n_pos, ft_strlen(*line));
 	ft_strncat(*line, buffer, n_pos);
-	return (1);
+	return (0);
 }
