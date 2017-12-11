@@ -19,6 +19,13 @@
 # include <unistd.h>
 # include <stdlib.h>
 
+typedef struct	s_buffer
+{
+	char	buffer[BUFF_SIZE];
+	size_t	buffer_len;
+	size_t	buffer_index;
+}		t_buffer;
+
 int		get_next_line(const int fd, char **line);
 int		main(int argc, char **argv);
 
