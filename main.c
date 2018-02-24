@@ -24,8 +24,10 @@ int		main(int argc, char **argv)
 	else if (argc == 2)
 		fd = open(argv[1], O_RDONLY);
 	else
-		return (2);
-	while (get_next_line(fd, &line) == 1)
+		return (-1);
+
+	int m = 0;
+	while (get_next_line(fd, &line) == 1 && m++ < 15)
 	{
 		printf("-->%s\n", line);
 		free(line);
