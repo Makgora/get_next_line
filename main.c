@@ -27,11 +27,12 @@ int		main(int argc, char **argv)
 		return (-1);
 
 	int m = 0;
-	while (get_next_line(fd, &line) == 1 && m++ < 15)
+	while (get_next_line(fd, &line) >= 0 && m++ < 15)
 	{
 		printf("-->%s\n", line);
 		free(line);
 	}
+	printf("--->%s\n", line);
 	if (argc == 2)
 		close(fd);
 	return (0);

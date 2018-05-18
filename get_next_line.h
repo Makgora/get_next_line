@@ -21,11 +21,8 @@
 
 typedef struct	s_buff
 {
-	char	buff[BUFF_SIZE];
-	size_t	buff_len;
-	size_t	buff_idx;
-	size_t	line_len;
-	size_t	nxt_n;
+	char	content[BUFF_SIZE];
+	int	idx;
 }		t_buff;
 
 int		get_next_line(const int fd, char **line);
