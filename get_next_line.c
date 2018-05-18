@@ -29,11 +29,14 @@ void		flush_buff(t_buff **buff, char **line)
 
 printf("buffer: '%s'\n", (&(*buff)->content)[(*buff)->idx]);
 printf("idx: '%d'\n", (*buff)->idx);
+
+	//TODO
 	next_line = ft_strclen(&((*buff)->content)[(*buff)->idx], '\n');
-printf("next_line: '%d'\n", next_line);
 	(*buff)->content[(*buff)->idx + next_line] = '\0';
 	*line = ft_strjoin(*line, &((*buff)->content)[(*buff)->idx]);
 	(*buff)->idx += next_line;
+	//TODO
+
 printf("buffer: '%s'\n", (&(*buff)->content)[(*buff)->idx]);
 printf("idx: '%d'\n", (*buff)->idx);
 }
