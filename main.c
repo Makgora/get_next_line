@@ -17,6 +17,7 @@ int		main(int argc, char **argv)
 {
 	int	fd;
 	char	*line;
+	int 	code;
 
 	line = ft_memalloc(0);
 	if (argc == 1)
@@ -26,13 +27,13 @@ int		main(int argc, char **argv)
 	else
 		return (-1);
 
-	int m = 0;
-	while (get_next_line(fd, &line) >= 0 && m++ < 15)
+	code = 0;
+	while (code == 0)
 	{
-		printf("-->%s\n", line);
-		free(line);
+		code = get_next_line(fd, &line);
+		printf("-->'%s'\nCode: %d\n", line, code);
 	}
-	printf("--->%s\n", line);
+	printf("--->'%s'\n", line);
 	if (argc == 2)
 		close(fd);
 	return (0);

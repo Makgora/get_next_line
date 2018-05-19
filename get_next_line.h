@@ -22,10 +22,16 @@
 typedef struct	s_buff
 {
 	char	content[BUFF_SIZE];
+	int	len;
 	int	idx;
 }		t_buff;
 
+typedef struct	s_line
+{
+	char	*content;
+	int	len;
+}		t_line;
+
 int		get_next_line(const int fd, char **line);
-int		main(int argc, char **argv);
 
 #endif
