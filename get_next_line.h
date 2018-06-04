@@ -24,12 +24,15 @@ typedef struct	s_buff
 	char	content[BUFF_SIZE];
 	int	len;
 	int	idx;
+	int	is_last;
+	int	is_flushed;
 }		t_buff;
 
 typedef struct	s_line
 {
 	char	*content;
 	int	len;
+	int	is_ended;
 }		t_line;
 
 int		get_next_line(const int fd, char **line);
